@@ -1,21 +1,60 @@
 <!DOCTYPE html>
 <html lang="es">
-  <!-- Google tag (gtag.js) -->
+<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-5KK3TJ7WBV"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
+  function gtag() { dataLayer.push(arguments); }
   gtag('js', new Date());
 
   gtag('config', 'G-5KK3TJ7WBV');
 </script>
-  
+
 <head>
   <meta charset="UTF-8">
-  <title>Mi primera web</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>myjtools | Landing Page</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
 </head>
+
 <body>
-  <h1>Hola 👋</h1>
-  <p>Mi web funciona con GitHub Pages.</p>
+  <div class="container">
+    <header>
+      <div class="header-title">
+        <img src="assets/toolbox.png" alt="Toolbox" class="header-icon">
+        <h1>myjtools</h1>
+      </div>
+      <p class="subtitle">A personal set of Java tools and libraries</p>
+    </header>
+
+    <div class="grid">
+
+      <article class="card">
+        <h2 class="card-title">JExten</h2>
+        <p class="card-description">A lightweight, annotation-driven extension framework for Java that leverages the
+          Java Platform Module System (JPMS) to create dynamic, plugin-based applications.
+        </p>
+        <div class="card-links">
+          <a href="#" class="btn btn-primary">Documentation</a>
+          <a href="https://github.com/org-myjtools/jexten" class="btn btn-secondary" aria-label="GitHub">
+            <span class="icon-github"></span>
+          </a>
+        </div>
+      </article>
+
+
+    </div>
+
+    <footer>
+      <a href="https://www.flaticon.com/free-icons/toolbox" title="toolbox icons">Toolbox icons created by HAJICON -
+        Flaticon</a>
+      <p style="margin-top: 1rem; font-size: 0.9rem;">&copy; 2025 Luis Iñesta Gelabert. Contacto: <a
+          href="mailto:luiinge@gmail.com">luiinge@gmail.com</a></p>
+    </footer>
+  </div>
 </body>
+
 </html>
