@@ -1,0 +1,809 @@
+<html><head><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" integrity="sha512-BnbUDfEUfV0Slx6TunuB042k9tuKe3xrD6q4mg5Ed72LTgzDIcLPxg6yI2gcMFRyomt+yJJxE+zJwNmxki6/RA==" rel="stylesheet" crossorigin="anonymous" referrerpolicy="no-referrer"><link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" rel="stylesheet" crossorigin="anonymous" referrerpolicy="no-referrer"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/prism.min.js" integrity="sha512-YBk7HhgDZvBxmtOfUdvX0z8IH2d10Hp3aEygaMNhtF8fSOvBZ16D/1bXZTJV6ndk/L/DlXxYStP8jrF77v2MIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/components/prism-java.min.js" integrity="sha512-PWHY6Vao4E9K4LsGBYCY0ttDeiWZwuUozTbJvSy9UFHRz2J4Bl7rcWML3wEnJTVuCJhSwGne/8My5gTo/gnbpg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/components/prism-java.min.js" integrity="sha512-PWHY6Vao4E9K4LsGBYCY0ttDeiWZwuUozTbJvSy9UFHRz2J4Bl7rcWML3wEnJTVuCJhSwGne/8My5gTo/gnbpg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/9.1.2/mermaid.min.js" integrity="sha512-8ZrL1m0+KXHylxkFJdFtFCauQdV/KZMjSBL9iydsyIfiB1LwYBlGegX8dUlLnUtRDrTgWKP6pPVyOqa2VrqoNA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><style>:root {
+            --bg-color: #ffffff;
+            --text-color: #1f2937;
+            --muted-text: #6b7280;
+            --primary-color: #2563eb;
+            --border-color: #e5e7eb;
+            --code-bg: #f3f4f6;
+            --sidebar-width: 260px;
+            --toc-width: 220px;
+            --max-content-width: 800px;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #0d1117;
+            --text-color: #c9d1d9;
+            --muted-text: #8b949e;
+            --primary-color: #58a6ff;
+            --border-color: #30363d;
+            --code-bg: #161b22;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Layout */
+        .layout-container {
+            display: flex;
+            width: 100%;
+            max-width: 1440px;
+            margin: 0 auto;
+            flex: 1;
+            /* Take remaining space */
+        }
+
+
+        /* Side Navigation (Left) */
+        .site-tree {
+            width: var(--sidebar-width);
+            border-right: 1px solid var(--border-color);
+            padding: 2rem 1rem;
+            position: sticky;
+            top: 60px;
+            height: calc(100vh - 60px);
+            overflow-y: auto;
+            flex-shrink: 0;
+        }
+
+        .site-tree ul {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+        }
+
+        .site-tree li {
+            margin-bottom: 0.25rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .site-tree a,
+        .site-tree .nav-item-label {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem 0.75rem;
+            color: var(--text-color);
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .site-tree a:hover,
+        .site-tree .nav-item-label:hover {
+            background-color: var(--code-bg);
+            color: var(--primary-color);
+            text-decoration: none;
+            transform: translateX(4px);
+        }
+
+        /* Nested lists */
+        .site-tree li ul {
+            padding-left: 0.5rem;
+            margin-top: 0.25rem;
+            margin-bottom: 0.5rem;
+            border-left: 1px solid var(--border-color);
+            margin-left: 0.75rem;
+        }
+
+        .site-tree li ul a {
+            font-size: 0.9rem;
+            color: var(--muted-text);
+            padding-left: 1rem;
+        }
+
+        .site-tree ul li a i {
+            font-size: 1.5em;
+            padding-right: 0.5em;
+        }
+
+        .site-tree li ul a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Main Content */
+        main {
+            flex: 1;
+            padding: 2rem 3rem;
+            max-width: var(--max-content-width);
+            margin: 0 auto;
+        }
+
+        /* Tables */
+        main table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1.5em;
+            font-size: 0.95rem;
+        }
+
+        main th,
+        main td {
+            text-align: left;
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+        }
+
+        main th {
+            background-color: var(--code-bg);
+            font-weight: 600;
+        }
+
+        main tr:nth-child(even) {
+            background-color: rgba(0,0,0,0.02);
+        }
+
+        /* Table of Contents (Right) */
+        .toc {
+            width: var(--toc-width);
+            padding: 2rem 1rem;
+            position: sticky;
+            top: 60px;
+            height: calc(100vh - 60px);
+            overflow-y: auto;
+            flex-shrink: 0;
+            font-size: 0.9rem;
+            border-left: 1px solid transparent;
+            /* Optional border */
+        }
+
+        .toc ol {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+        }
+
+        .toc ol ol {
+            padding-left: 1rem;
+        }
+
+        /* Typography */
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            margin-top: 2em;
+            margin-bottom: 0.5em;
+            font-weight: 600;
+            line-height: 1.25;
+            color: var(--text-color);
+        }
+
+        h1 {
+            font-size: 2.25rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.3em;
+            margin-top: 0;
+        }
+
+        h2 {
+            font-size: 1.75rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.3em;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+        }
+
+        p {
+            margin-bottom: 1.5em;
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.15s;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        a.internal {
+            display: block;
+            padding: 0.25rem 0;
+            color: var(--muted-text);
+        }
+
+        a.internal:hover {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        ul,
+        ol {
+            margin-bottom: 1.5em;
+            padding-left: 1.5em;
+        }
+
+        li {
+            margin-bottom: 0.5em;
+        }
+
+        /* Code Blocks */
+        pre {
+            background-color: var(--code-bg);
+            border-radius: 6px;
+            padding: 1em;
+            overflow-x: auto;
+            margin-bottom: 1.5em;
+            font-size: 0.9em;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            position: relative;
+            /* For copy button positioning */
+        }
+
+        .copy-button {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background-color: transparent;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            color: var(--muted-text);
+            cursor: pointer;
+            padding: 0.25rem 0.5rem;
+            font-size: 0.8rem;
+            opacity: 0;
+            transition: opacity 0.2s, background-color 0.2s;
+        }
+
+        pre:hover .copy-button {
+            opacity: 1;
+        }
+
+        .copy-button:hover {
+            background-color: var(--bg-color);
+            color: var(--primary-color);
+        }
+
+        .copy-button.copied {
+            color: #10b981;
+            /* Green for success */
+            border-color: #10b981;
+        }
+
+
+        code[class*=language-],
+        pre[class*=language-] {
+            font-size: 0.9em !important;
+        }
+
+        code {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            background-color: var(--code-bg);
+            padding: 0.2em 0.4em;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        pre code {
+            padding: 0;
+            background-color: transparent;
+            font-size: 1em;
+            display: block;
+            /* Ensure code block takes width for copy */
+        }
+
+        /* Top Navigation Bar */
+        .top-bar {
+            background-color: #1f2937;
+            border-bottom: 1px solid #111827;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 1.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .top-bar-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .top-bar-title .logo-icon {
+            height: 24px;
+            width: auto;
+        }
+
+        .top-bar-social a {
+            color: #d1d5db;
+            font-size: 1.25rem;
+            transition: color 0.2s;
+            margin-left: 1rem;
+        }
+
+        .top-bar-social a:hover {
+            color: #ffffff;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: #d1d5db;
+            cursor: pointer;
+            font-size: 1.25rem;
+            padding: 0.5rem;
+            transition: color 0.2s;
+        }
+
+        .theme-toggle:hover {
+            color: #ffffff;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .toc {
+                display: none;
+            }
+
+            .layout-container {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .site-tree {
+                display: none;
+                /* Hide sidebar on mobile for now */
+            }
+
+            main {
+                padding: 1rem;
+            }
+        }</style></head><body><header class="top-bar"><div class="top-bar-title"><div></div><span>Maven Fetcher</span></div><div class="top-bar-social"><button class="theme-toggle" id="theme-toggle" aria-label="Toggle Dark/Light Mode"><i class="fa fa-moon" id="theme-icon"></i></button><a target="_blank" href="https://github.com/org-myjtools/myjtools-parent/maven-fetcher" rel="noopener noreferrer"><i class="fab fa-github"></i></a></div></header><div class="layout-container"><nav class="site-tree"><ul><li><a href="index.html"><i class="fas fa-home"></i>Introduction</a></li><li><a href="license.html"><i class="fas fa-balance-scale"></i>License</a></li><li><a href="changelog.html"><i class="fas fa-history"></i>Changelog</a></li></ul></nav><main><h1 id="maven-fetcher">Maven Fetcher</h1>
+<p><a target="_blank" rel="external noreferrer noopener nofollow" href="https://central.sonatype.com/artifact/org.myjtools/maven-fetcher"><img src="https://img.shields.io/maven-central/v/org.myjtools/maven-fetcher" alt="Maven Central" /></a>
+<a target="_blank" rel="external noreferrer noopener nofollow" href="https://sonarcloud.io/summary/new_code?id=org-myjtools_maven-fetcher"><img src="https://sonarcloud.io/api/project_badges/measure?project=org-myjtools_maven-fetcher&amp;metric=alert_status" alt="Quality Gate Status" /></a>
+<a target="_blank" rel="external noreferrer noopener nofollow" href="https://sonarcloud.io/summary/new_code?id=org-myjtools_maven-fetcher"><img src="https://sonarcloud.io/api/project_badges/measure?project=org-myjtools_maven-fetcher&amp;metric=coverage" alt="Coverage" /></a>
+<a target="_blank" rel="external noreferrer noopener nofollow" href="https://sonarcloud.io/summary/new_code?id=org-myjtools_maven-fetcher"><img src="https://sonarcloud.io/api/project_badges/measure?project=org-myjtools_maven-fetcher&amp;metric=bugs" alt="Bugs" /></a>
+<a target="_blank" rel="external noreferrer noopener nofollow" href="https://sonarcloud.io/summary/new_code?id=org-myjtools_maven-fetcher"><img src="https://sonarcloud.io/api/project_badges/measure?project=org-myjtools_maven-fetcher&amp;metric=vulnerabilities" alt="Vulnerabilities" /></a>
+<a target="_blank" rel="external noreferrer noopener nofollow" href="https://sonarcloud.io/summary/new_code?id=org-myjtools_maven-fetcher"><img src="https://sonarcloud.io/api/project_badges/measure?project=org-myjtools_maven-fetcher&amp;metric=sqale_rating" alt="Maintainability Rating" /></a></p>
+<p>This project intention is to offer an easy way to retrieve Maven artifacts from remote repositories
+outside a regular Maven life-cycle operation. This feature may be necessary, for example, if you are
+building a tool that handles plugins that are provided as Maven artifacts, and you need to download
+and including them in your classpath dynamically.</p>
+<p>The official library that handles this is <a class="external" target="_blank" rel="external noreferrer noopener nofollow" href="https://maven.apache.org/resolver/">Apache Maven Artifact Resolver</a>
+However, its API is arguably a bit overwhelming for casual clients.
+The <em>Maven Fetcher</em> library is <strong>wrapper</strong> around <code>Apache Maven Artifact Resolver</code> exposing
+a simpler API that should be enough for basic usage, as well as adding the capability of configure
+the fetching process externally using properties.</p>
+<h2 id="usage">Usage</h2>
+<h3 id="example">Example</h3>
+<p>A typical use of this library would be a three-step process:</p>
+<ol>
+<li>Create a new fetcher and configure it if necessary</li>
+<li>Invoke the method <code>fetchArtifacts</code></li>
+<li>Check the result and handle the fetched artifacts if necessary</li>
+</ol>
+<pre><code class="language-java">  var result = new MavenFetcher()
+    .localRepositoryPath(&quot;/home/myuser/.m2/repository&quot;)
+    .addRemoteRepository(&quot;nexus&quot;, &quot;https://nexus:8081/repository/maven-releases&quot;)
+    .fetchArtifacts( new MavenFetchRequest(&quot;junit:junit:4.12&quot;,&quot;org.apache.commons:commons-lang3:3.9&quot;)
+       .scopes(&quot;compile&quot;,&quot;provided&quot;)
+       .retrievingOptionals()       .
+    );
+</code></pre>
+<h3 id="dependency">Dependency</h3>
+<h4 id="maven">Maven</h4>
+<p>Include the following within the <code>&lt;dependencies&gt;</code> section of your <code>pom.xml</code> file:</p>
+<pre><code class="language-xml">&lt;dependency&gt;
+    &lt;groupId&gt;org.myjtools/groupId&gt;
+    &lt;artifactId&gt;maven-fetcher&lt;/artifactId&gt;
+    &lt;version&gt;1.1.1&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+<h3 id="configuration">Configuration</h3>
+<p>The API offers a set of methods to configure options fluently:</p>
+<ul>
+<li>
+<p><code>logger(logger :Logger)</code></p>
+<blockquote>
+<p>Set a custom SLF4J Logger instance to log the traces</p>
+</blockquote>
+</li>
+<li>
+<p><code>proxyURL(url :string)</code></p>
+<blockquote>
+<p>Set a proxy URL, if required</p>
+</blockquote>
+</li>
+<li>
+<p><code>proxyCredentials(username: string, password: string)</code></p>
+<blockquote>
+<p>Set the proxy credentials, if required</p>
+</blockquote>
+</li>
+<li>
+<p><code>proxyExceptions(exceptions: Collection&lt;String&gt;)</code></p>
+<blockquote>
+<p>Set a list of URL exceptions for the proxy, if required</p>
+</blockquote>
+</li>
+<li>
+<p><code>localRepositoryPath(localRepositoryPath: Path)</code></p>
+<blockquote>
+<p>Set the path of the Maven local repository folder</p>
+</blockquote>
+</li>
+<li>
+<p><code>addRemoteRepository(repositoryId: string, repositoryURL: string)</code></p>
+<blockquote>
+<p>Add a Maven remote repository from where retrieve artifacts</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="configuration-via-properties">Configuration via properties</h4>
+<p>Another way to configure the fetcher is load either a <code>Properties</code> object or an external  <code>.properties</code> file:</p>
+<ul>
+<li>
+<p><code>config(properties: Properties)</code></p>
+<blockquote>
+<p>Configure the fetcher using the properties from the passed object</p>
+</blockquote>
+</li>
+</ul>
+<p>The accepted properties are the following:</p>
+<table>
+<thead>
+<tr><th>Property</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>useDefaultRemoteRepository</code></td><td>Whether use the default Maven Central repository (<code>true</code> by default)</td></tr>
+<tr><td><code>remoteRepositories</code></td><td>A list of remote repositories separeted with <code>;</code> .<br/> The expected format for each repository is either <code>id=url</code> or <code>id=url [user:pwd]</code> (when credentials are needed).</td></tr>
+<tr><td><code>localRepository</code></td><td>The path of the Maven local repository folder</td></tr>
+<tr><td><code>proxy.url</code></td><td>A proxy URL, if required</td></tr>
+<tr><td><code>proxy.username</code></td><td>The username for proxy credentials</td></tr>
+<tr><td><code>proxy.password</code></td><td>The password for proxy credentials</td></tr>
+<tr><td><code>proxy.exceptions</code></td><td>A list of proxy exceptions separated with <code>;</code></td></tr>
+</tbody>
+</table>
+<h2 id="other-considerations">Other considerations</h2>
+<h3 id="restricting-access-to-remote-repositories">Restricting access to remote repositories</h3>
+<p>By default, the <code>MavenFetcher</code> object would check the Maven central repository at
+[https://repo.maven.apache.org/maven2]. However, in some scenarios you may want to
+restrict the access to remote repositories and use only a curated or private list.
+To achieve this, simply clear the remote repositories before adding your own.</p>
+<pre><code class="language-java">  var result = new MavenFetcher()
+    .localRepositoryPath(&quot;/home/linesta/.m2/repository&quot;)
+    .clearRemoteRepositories()
+    .addRemoteRepository(&quot;nexus&quot;, &quot;https://nexus:8081/repository/maven-releases&quot;)
+    .fetchArtifacts( ... )
+</code></pre>
+<h3 id="artifact-versions">Artifact versions</h3>
+<p>The artifact request usually include the specific coordinates of the required artifacts
+in form of <code>&lt;groupId&gt;:&lt;artifactId&gt;:&lt;version&gt;</code> . However, this library benefits from the
+Maven version range mechanism, being <code>version</code> some of the following:</p>
+<table>
+<thead>
+<tr><th>Range</th><th>Meaning</th></tr>
+</thead>
+<tbody>
+<tr><td><code>1.0</code></td><td>specific version</td></tr>
+<tr><td><code>[1.5,)</code></td><td>any version greater or equal</td></tr>
+<tr><td><code>(,1.5]</code></td><td>any version less or equal</td></tr>
+<tr><td><code>[1.2,1.3]</code></td><td>any version in the given interval</td></tr>
+<tr><td>none</td><td>latest version available</td></tr>
+</tbody>
+</table>
+<p>Notice that, if the version is not included (coordinates in form <code>&lt;groupId&gt;:&lt;artifactId&gt;</code>),
+the latest version available in the remote repositories will be used.</p>
+<h2 id="license">License</h2>
+<pre><code>    MIT License
+
+    Copyright (c) 2020 Luis Iñesta Gelabert
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the &quot;Software&quot;), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in all
+    copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+</code></pre>
+<p>The source code includes shaded copies of Maven components licensed under
+the Apache license version 2.0:</p>
+<pre><code>
+                                 Apache License
+                           Version 2.0, January 2004
+                        http://www.apache.org/licenses/
+
+   TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
+
+   1. Definitions.
+
+      &quot;License&quot; shall mean the terms and conditions for use, reproduction,
+      and distribution as defined by Sections 1 through 9 of this document.
+
+      &quot;Licensor&quot; shall mean the copyright owner or entity authorized by
+      the copyright owner that is granting the License.
+
+      &quot;Legal Entity&quot; shall mean the union of the acting entity and all
+      other entities that control, are controlled by, or are under common
+      control with that entity. For the purposes of this definition,
+      &quot;control&quot; means (i) the power, direct or indirect, to cause the
+      direction or management of such entity, whether by contract or
+      otherwise, or (ii) ownership of fifty percent (50%) or more of the
+      outstanding shares, or (iii) beneficial ownership of such entity.
+
+      &quot;You&quot; (or &quot;Your&quot;) shall mean an individual or Legal Entity
+      exercising permissions granted by this License.
+
+      &quot;Source&quot; form shall mean the preferred form for making modifications,
+      including but not limited to software source code, documentation
+      source, and configuration files.
+
+      &quot;Object&quot; form shall mean any form resulting from mechanical
+      transformation or translation of a Source form, including but
+      not limited to compiled object code, generated documentation,
+      and conversions to other media types.
+
+      &quot;Work&quot; shall mean the work of authorship, whether in Source or
+      Object form, made available under the License, as indicated by a
+      copyright notice that is included in or attached to the work
+      (an example is provided in the Appendix below).
+
+      &quot;Derivative Works&quot; shall mean any work, whether in Source or Object
+      form, that is based on (or derived from) the Work and for which the
+      editorial revisions, annotations, elaborations, or other modifications
+      represent, as a whole, an original work of authorship. For the purposes
+      of this License, Derivative Works shall not include works that remain
+      separable from, or merely link (or bind by name) to the interfaces of,
+      the Work and Derivative Works thereof.
+
+      &quot;Contribution&quot; shall mean any work of authorship, including
+      the original version of the Work and any modifications or additions
+      to that Work or Derivative Works thereof, that is intentionally
+      submitted to Licensor for inclusion in the Work by the copyright owner
+      or by an individual or Legal Entity authorized to submit on behalf of
+      the copyright owner. For the purposes of this definition, &quot;submitted&quot;
+      means any form of electronic, verbal, or written communication sent
+      to the Licensor or its representatives, including but not limited to
+      communication on electronic mailing lists, source code control systems,
+      and issue tracking systems that are managed by, or on behalf of, the
+      Licensor for the purpose of discussing and improving the Work, but
+      excluding communication that is conspicuously marked or otherwise
+      designated in writing by the copyright owner as &quot;Not a Contribution.&quot;
+
+      &quot;Contributor&quot; shall mean Licensor and any individual or Legal Entity
+      on behalf of whom a Contribution has been received by Licensor and
+      subsequently incorporated within the Work.
+
+   2. Grant of Copyright License. Subject to the terms and conditions of
+      this License, each Contributor hereby grants to You a perpetual,
+      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
+      copyright license to reproduce, prepare Derivative Works of,
+      publicly display, publicly perform, sublicense, and distribute the
+      Work and such Derivative Works in Source or Object form.
+
+   3. Grant of Patent License. Subject to the terms and conditions of
+      this License, each Contributor hereby grants to You a perpetual,
+      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
+      (except as stated in this section) patent license to make, have made,
+      use, offer to sell, sell, import, and otherwise transfer the Work,
+      where such license applies only to those patent claims licensable
+      by such Contributor that are necessarily infringed by their
+      Contribution(s) alone or by combination of their Contribution(s)
+      with the Work to which such Contribution(s) was submitted. If You
+      institute patent litigation against any entity (including a
+      cross-claim or counterclaim in a lawsuit) alleging that the Work
+      or a Contribution incorporated within the Work constitutes direct
+      or contributory patent infringement, then any patent licenses
+      granted to You under this License for that Work shall terminate
+      as of the date such litigation is filed.
+
+   4. Redistribution. You may reproduce and distribute copies of the
+      Work or Derivative Works thereof in any medium, with or without
+      modifications, and in Source or Object form, provided that You
+      meet the following conditions:
+
+      (a) You must give any other recipients of the Work or
+          Derivative Works a copy of this License; and
+
+      (b) You must cause any modified files to carry prominent notices
+          stating that You changed the files; and
+
+      (c) You must retain, in the Source form of any Derivative Works
+          that You distribute, all copyright, patent, trademark, and
+          attribution notices from the Source form of the Work,
+          excluding those notices that do not pertain to any part of
+          the Derivative Works; and
+
+      (d) If the Work includes a &quot;NOTICE&quot; text file as part of its
+          distribution, then any Derivative Works that You distribute must
+          include a readable copy of the attribution notices contained
+          within such NOTICE file, excluding those notices that do not
+          pertain to any part of the Derivative Works, in at least one
+          of the following places: within a NOTICE text file distributed
+          as part of the Derivative Works; within the Source form or
+          documentation, if provided along with the Derivative Works; or,
+          within a display generated by the Derivative Works, if and
+          wherever such third-party notices normally appear. The contents
+          of the NOTICE file are for informational purposes only and
+          do not modify the License. You may add Your own attribution
+          notices within Derivative Works that You distribute, alongside
+          or as an addendum to the NOTICE text from the Work, provided
+          that such additional attribution notices cannot be construed
+          as modifying the License.
+
+      You may add Your own copyright statement to Your modifications and
+      may provide additional or different license terms and conditions
+      for use, reproduction, or distribution of Your modifications, or
+      for any such Derivative Works as a whole, provided Your use,
+      reproduction, and distribution of the Work otherwise complies with
+      the conditions stated in this License.
+
+   5. Submission of Contributions. Unless You explicitly state otherwise,
+      any Contribution intentionally submitted for inclusion in the Work
+      by You to the Licensor shall be under the terms and conditions of
+      this License, without any additional terms or conditions.
+      Notwithstanding the above, nothing herein shall supersede or modify
+      the terms of any separate license agreement you may have executed
+      with Licensor regarding such Contributions.
+
+   6. Trademarks. This License does not grant permission to use the trade
+      names, trademarks, service marks, or product names of the Licensor,
+      except as required for reasonable and customary use in describing the
+      origin of the Work and reproducing the content of the NOTICE file.
+
+   7. Disclaimer of Warranty. Unless required by applicable law or
+      agreed to in writing, Licensor provides the Work (and each
+      Contributor provides its Contributions) on an &quot;AS IS&quot; BASIS,
+      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+      implied, including, without limitation, any warranties or conditions
+      of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A
+      PARTICULAR PURPOSE. You are solely responsible for determining the
+      appropriateness of using or redistributing the Work and assume any
+      risks associated with Your exercise of permissions under this License.
+
+   8. Limitation of Liability. In no event and under no legal theory,
+      whether in tort (including negligence), contract, or otherwise,
+      unless required by applicable law (such as deliberate and grossly
+      negligent acts) or agreed to in writing, shall any Contributor be
+      liable to You for damages, including any direct, indirect, special,
+      incidental, or consequential damages of any character arising as a
+      result of this License or out of the use or inability to use the
+      Work (including but not limited to damages for loss of goodwill,
+      work stoppage, computer failure or malfunction, or any and all
+      other commercial damages or losses), even if such Contributor
+      has been advised of the possibility of such damages.
+
+   9. Accepting Warranty or Additional Liability. While redistributing
+      the Work or Derivative Works thereof, You may choose to offer,
+      and charge a fee for, acceptance of support, warranty, indemnity,
+      or other liability obligations and/or rights consistent with this
+      License. However, in accepting such obligations, You may act only
+      on Your own behalf and on Your sole responsibility, not on behalf
+      of any other Contributor, and only if You agree to indemnify,
+      defend, and hold each Contributor harmless for any liability
+      incurred by, or claims asserted against, such Contributor by reason
+      of your accepting any such warranty or additional liability.
+
+   END OF TERMS AND CONDITIONS
+
+   APPENDIX: How to apply the Apache License to your work.
+
+      To apply the Apache License to your work, attach the following
+      boilerplate notice, with the fields enclosed by brackets &quot;[]&quot;
+      replaced with your own identifying information. (Don't include
+      the brackets!)  The text should be enclosed in the appropriate
+      comment syntax for the file format. We also recommend that a
+      file or class name and description of purpose be included on the
+      same &quot;printed page&quot; as the copyright notice for easier
+      identification within third-party archives.
+
+   Copyright [yyyy] [name of copyright owner]
+
+   Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+</code></pre>
+<h2 id="authors">Authors</h2>
+<ul>
+<li>Luis Iñesta Gelabert  |  luiinge@gmail.com</li>
+</ul>
+<h2 id="contributions">Contributions</h2>
+<p>If you want to contribute to this project, visit the
+<a class="external" target="_blank" rel="external noreferrer noopener nofollow" href="https://github.com/org-myjtools/maven-fetcher">Github project</a>. You can open a new issue / feature
+request, or make a pull request to consider. If your contribution is worthy, you will be added
+as a contributor in this very page.</p>
+</main><nav class="toc"><ol><li><a class="internal" href="#usage">Usage</a></li><ol><li><a class="internal" href="#example">Example</a></li><li><a class="internal" href="#dependency">Dependency</a></li><li><a class="internal" href="#configuration">Configuration</a></li></ol><li><a class="internal" href="#other-considerations">Other considerations</a></li><ol><li><a class="internal" href="#restricting-access-to-remote-repositories">Restricting access to remote repositories</a></li><li><a class="internal" href="#artifact-versions">Artifact versions</a></li></ol><li><a class="internal" href="#license">License</a></li><li><a class="internal" href="#authors">Authors</a></li><li><a class="internal" href="#contributions">Contributions</a></li></ol></ol></nav></div></body><script>const themeToggle = document.getElementById('theme-toggle');
+const icon = themeToggle.querySelector('i');
+const html = document.documentElement;
+
+// Check local storage or system preference
+const savedTheme = localStorage.getItem('theme');
+const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+const currentTheme = savedTheme || systemTheme;
+
+// Apply theme
+html.setAttribute('data-theme', currentTheme);
+updateIcon(currentTheme);
+
+// Toggle event
+themeToggle.addEventListener('click', () => {
+    const newTheme = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    updateIcon(newTheme);
+});
+
+function updateIcon(theme) {
+    if (theme === 'dark') {
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+    } else {
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon');
+    }
+}
+
+// Add Copy Buttons
+document.querySelectorAll('pre').forEach(pre => {
+    const button = document.createElement('button');
+    button.className = 'copy-button';
+    button.innerHTML = '<i class="far fa-copy"></i>';
+    button.ariaLabel = 'Copy code';
+
+    button.addEventListener('click', () => {
+        const code = pre.querySelector('code').innerText;
+        navigator.clipboard.writeText(code).then(() => {
+            button.innerHTML = '<i class="fas fa-check"></i>';
+            button.classList.add('copied');
+            setTimeout(() => {
+                button.innerHTML = '<i class="far fa-copy"></i>';
+                button.classList.remove('copied');
+            }, 2000);
+        });
+    });
+
+    pre.appendChild(button);
+});
+</script></html>
