@@ -1,110 +1,172 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-5KK3TJ7WBV"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag() { dataLayer.push(arguments); }
-  gtag('js', new Date());
+    <!-- Google tag (gtag.js) -->
+    <script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-5KK3TJ7WBV"
+    ></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
 
-  gtag('config', 'G-5KK3TJ7WBV');
-</script>
+        gtag("config", "G-5KK3TJ7WBV");
+    </script>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>myjtools | Landing Page</title>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
-</head>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>myjtools | Landing Page</title>
+        <link rel="stylesheet" href="styles.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap"
+            rel="stylesheet"
+        />
+    </head>
 
-<body>
-  <div class="container">
-    <header>
-      <div class="header-title">
-        <img src="assets/toolbox.png" alt="Toolbox" class="header-icon">
-        <h1>myjtools</h1>
-      </div>
-      <p class="subtitle">A personal set of Java tools and libraries</p>
-    </header>
+    <body>
+        <div class="container">
+            <header>
+                <div class="header-title">
+                    <img
+                        src="assets/toolbox.png"
+                        alt="Toolbox"
+                        class="header-icon"
+                    />
+                    <h1>myjtools</h1>
+                </div>
+                <p class="subtitle">
+                    A personal set of Java tools and libraries
+                </p>
+            </header>
 
-    <div class="grid">
+            <div class="grid">
+                <article class="card">
+                    <h2 class="card-title">Maven Fetcher</h2>
+                    <p class="card-description">
+                        An easy way to retrieve Maven artifacts from remote
+                        repositories outside a regular Maven life-cycle
+                        operation.
+                    </p>
+                    <div class="card-links">
+                        <a
+                            href="maven-fetcher/index.html"
+                            class="btn btn-primary"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            >Documentation</a
+                        >
+                        <a
+                            href="https://github.com/org-myjtools/maven-fetcher"
+                            class="btn btn-secondary"
+                            aria-label="GitHub"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <span class="icon-github"></span>
+                        </a>
+                    </div>
+                </article>
 
-      <article class="card">
-        <h2 class="card-title">Maven Fetcher</h2>
-        <p class="card-description">An easy way to retrieve Maven artifacts from remote repositories outside a regular
-          Maven life-cycle operation.
-        </p>
-        <div class="card-links">
-          <a href="maven-fetcher/index.html" class="btn btn-primary">Documentation</a>
-          <a href="https://github.com/org-myjtools/maven-fetcher" class="btn btn-secondary" aria-label="GitHub"
-            target="_blank" rel="noopener noreferrer">
-            <span class="icon-github"></span>
-          </a>
+                <article class="card">
+                    <h2 class="card-title">JExten</h2>
+                    <p class="card-description">
+                        A lightweight, annotation-driven extension framework for
+                        Java that leverages the Java Platform Module System
+                        (JPMS) to create dynamic, plugin-based applications.
+                    </p>
+                    <div class="card-links">
+                        <a
+                            href="jexten/index.html"
+                            class="btn btn-primary"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            >Documentation</a
+                        >
+                        <a
+                            href="https://github.com/org-myjtools/jexten"
+                            class="btn btn-secondary"
+                            aria-label="GitHub"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <span class="icon-github"></span>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <h2 class="card-title">doc2html</h2>
+                    <p class="card-description">
+                        Simple tool to convert Markdown files to HTML. It also
+                        provides custom features such as code highlighting,
+                        table of contents, emojis and Mermaid diagrams.
+                    </p>
+                    <div class="card-links">
+                        <a
+                            href="doc2html/index.html"
+                            class="btn btn-primary"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            >Documentation</a
+                        >
+                        <a
+                            href="https://github.com/org-myjtools/doc2html"
+                            class="btn btn-secondary"
+                            aria-label="GitHub"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <span class="icon-github"></span>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <h2 class="card-title">docsite-maven-plugin</h2>
+                    <p class="card-description">
+                        Maven plugin to generate a static website from Markdown
+                        files. Intended to be used as a documentation generator
+                        for Java projects with a Maven build.
+                    </p>
+                    <div class="card-links">
+                        <a
+                            href="docsite-maven-plugin/index.html"
+                            class="btn btn-primary"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            >Documentation</a
+                        >
+                        <a
+                            href="https://github.com/org-myjtools/docsite-maven-plugin"
+                            class="btn btn-secondary"
+                            aria-label="GitHub"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <span class="icon-github"></span>
+                        </a>
+                    </div>
+                </article>
+            </div>
+
+            <footer>
+                <a
+                    href="https://www.flaticon.com/free-icons/toolbox"
+                    title="toolbox icons"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >Toolbox icons created by HAJICON - Flaticon</a
+                >
+                <p style="margin-top: 1rem; font-size: 0.9rem">
+                    &copy; 2025 Luis Iñesta Gelabert.
+                    <a href="mailto:luiinge@gmail.com">luiinge@gmail.com</a>
+                </p>
+            </footer>
         </div>
-      </article>
-
-
-      <article class="card">
-        <h2 class="card-title">JExten</h2>
-        <p class="card-description">A lightweight, annotation-driven extension framework for Java that leverages the
-          Java Platform Module System (JPMS) to create dynamic, plugin-based applications.
-        </p>
-        <div class="card-links">
-          <a href="jexten/index.html" class="btn btn-primary" target="_blank"
-            rel="noopener noreferrer">Documentation</a>
-          <a href="https://github.com/org-myjtools/jexten" class="btn btn-secondary" aria-label="GitHub" target="_blank"
-            rel="noopener noreferrer">
-            <span class="icon-github"></span>
-          </a>
-        </div>
-      </article>
-
-      <article class="card">
-        <h2 class="card-title">doc2html</h2>
-        <p class="card-description">Simple tool to convert Markdown files to HTML. It
-          also provides custom features such as code highlighting, table of contents, emojis
-          and Mermaid diagrams.
-        </p>
-        <div class="card-links">
-          <a href="doc2html/index.html" class="btn btn-primary" target="_blank"
-            rel="noopener noreferrer">Documentation</a>
-          <a href="https://github.com/org-myjtools/doc2html" class="btn btn-secondary" aria-label="GitHub"
-            target="_blank" rel="noopener noreferrer">
-            <span class="icon-github"></span>
-          </a>
-        </div>
-      </article>
-
-
-      <article class="card">
-        <h2 class="card-title">docsite-maven-plugin</h2>
-        <p class="card-description">Maven plugin to generate a static website from Markdown files.
-          Intended to be used as a documentation generator for Java projects with a Maven build.
-        </p>
-        <div class="card-links">
-          <a href="docsite-maven-plugin/index.html" class="btn btn-primary" target="_blank"
-            rel="noopener noreferrer">Documentation</a>
-          <a href="https://github.com/org-myjtools/docsite-maven-plugin" class="btn btn-secondary" aria-label="GitHub"
-            target="_blank" rel="noopener noreferrer">
-            <span class="icon-github"></span>
-          </a>
-        </div>
-      </article>
-
-
-    </div>
-
-    <footer>
-      <a href="https://www.flaticon.com/free-icons/toolbox" title="toolbox icons" target="_blank"
-        rel="noopener noreferrer">Toolbox icons created by HAJICON -
-        Flaticon</a>
-      <p style="margin-top: 1rem; font-size: 0.9rem;">&copy; 2025 Luis Iñesta Gelabert. <a
-          href="mailto:luiinge@gmail.com">luiinge@gmail.com</a></p>
-    </footer>
-  </div>
-</body>
-
+    </body>
 </html>
