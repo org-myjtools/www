@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"m":"org.myjtools.imconfig","l":"org.myjtools.imconfig"},{"m":"org.myjtools.imconfig","l":"org.myjtools.imconfig.internal"},{"m":"org.myjtools.imconfig","l":"org.myjtools.imconfig.types"}];updateSearchResults();
